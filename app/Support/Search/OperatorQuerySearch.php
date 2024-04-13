@@ -2770,7 +2770,11 @@ class OperatorQuerySearch implements SearchInterface
         $this->tagRepository->setUser($user);
         $this->collector = app(GroupCollectorInterface::class);
         $this->collector->setUser($user);
-        $this->collector->withAccountInformation()->withCategoryInformation()->withBudgetInformation();
+        $this->collector
+            ->withAccountInformation()
+            ->withCategoryInformation()
+            ->withBudgetInformation()
+            ->withBillInformation();
 
         $this->setLimit((int)app('preferences')->getForUser($user, 'listPageSize', 50)->data);
     }
